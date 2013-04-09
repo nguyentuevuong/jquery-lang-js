@@ -98,7 +98,7 @@ jquery_lang_js.prototype.run = function () {
 		}
 	}
 	
-	this.change(this.currentLang);
+	
 	
 	// Now that the language system is setup, check
 	// if there is a default language and switch to it
@@ -107,6 +107,8 @@ jquery_lang_js.prototype.run = function () {
 		if (lsLang) {
 			this.change(lsLang);
 		}
+		else
+			this.change(this.currentLang);
 	}
 }
 
@@ -234,13 +236,13 @@ jquery_lang_js.prototype.change = function (lang) {
 jquery_lang_js.prototype.convert = function (text, lang) {
 	if (lang) {
 		if (lang != this.defaultLang) {
-			return this.lang[lang][text];
+			return this.lang[lang][text] || text;
 		} else {
 			return text;
 		}
 	} else {
 		if (this.currentLang != this.defaultLang) {
-			return this.lang[this.currentLang][text];
+			return this.lang[this.currentLang][text] || text;
 		} else {
 			return text;
 		}
